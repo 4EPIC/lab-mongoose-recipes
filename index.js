@@ -15,34 +15,38 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then((self) => {
+  /* .then((self) => {
     console.log(`Connected to the database: "${self.connection.name}"`);
     // Before adding any recipes to the database, let's remove all existing ones
     // return Recipe.deleteMany();
+  }) */
+  // .then(() => {
+  // Run your code here, after you have insured that the connection was made
+  // return Recipe.create({
+  // title: "Cappuccino",
+  // level: "Easy Peasy",
+  // ingredients: ["Coffe", "Milk"],
+  // cuisine: "Italian",
+  // dishType: "breakfast",
+  // duration: 2,
+  // creator: "Marco Santa",
+  // created: new Date(),
+  //   return Recipe.insertMany(data);
+  // })
+  // .then(() => {
+  //   return Recipe.findOneAndUpdate(
+  //     { title: "Rigatoni alla Genovese" },
+  //     { $set: { duration: 100 } },
+  //     { new: true }
+  //   );
+  // })
+  .then(() => {
+    return Recipe.deleteOne({ title: "Chocolate Chip Cookies" });
   })
   .then(() => {
-    // Run your code here, after you have insured that the connection was made
-    // Recipe.create({
-    //   title: "Cappuccino",
-    //   level: "Easy Peasy",
-    //   ingredients: ["Coffe", "Milk"],
-    //   cuisine: "Italian",
-    //   dishType: "breakfast",
-    //   duration: 2,
-    //   creator: "Marco Santa",
-    //   created: new Date(),
-    // });
-    // Recipe.insertMany(data)
-    // Recipe.findOneAndUpdate(
-    //   { title: 'Rigatoni alla Genovese' },
-    //   { $set: {duration: 100} },
-    // );
-    Recipe.deleteOne(
-      { title: 'Carrot Cake' }
-      );
-    })
-    .catch((error) => {
-      console.error("Error connecting to the database", error);
-    });
-    
-    mongoose.disconect()
+    console.log("done");
+    mongoose.disconnect();
+  })
+  .catch((error) => {
+    console.error("Error connecting to the database", error);
+  });
